@@ -1,0 +1,12 @@
+{
+    "The :attribute must contain at least one letter.": "Le champ :attribute doit contenir au moins une lettre.",
+    "The :attribute must contain at least one number.": "Le champ :attribute doit contenir au moins un nombre.",
+    "The :attribute must contain at least one symbol.": "Le champ :attribute doit contenir au moins un symbole.",
+    "The :attribute must contain at least one uppercase and one lowercase letter.": "Le champ :attribute doit contenir au moins une lettre majuscule et une lettre minuscule.",
+    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "Le champ :attribute donné est apparu dans une fuite de données. Veuillez choisir un autre :attribute.",
+    "Update your account's profile information and email address.":"Mettez à jour les informations de profil et l'adresse e-mail de votre compte.",
+    "Ensure your account is using a long, random password to stay secure.":"Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.",
+    "Current password":"Mot de passe actuel",
+    "This is your password set at the moment.":"Il s'agit de votre mot de passe défini pour le moment.",
+    "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.":"Un bon mot de passe comporte au moins 15 caractères ou au moins 8 caractères, dont un chiffre et une lettre minuscule."
+}
