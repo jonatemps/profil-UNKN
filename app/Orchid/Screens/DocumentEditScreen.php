@@ -23,7 +23,6 @@ class DocumentEditScreen extends Screen
      */
     public function query(): iterable
     {
-        // dd(Auth::user());
         return [
             'user' =>Auth::user()
         ];
@@ -106,27 +105,28 @@ class DocumentEditScreen extends Screen
     }
 
 
-    public function save(Request $request)
+    public function save(Request $request, Dossier $dossier)
     {
 
-        $request->validate([
-            'bulletin5' => 'required',
-            'bulletin6' => 'required',
-            'attestation' => 'required',
-            'bordereau' => 'required',
-        ]);
-// dd($request->input('bulletin5'));
+        $dossier = Auth::user()->dossier ?? $dossier;
+        // dd($dossier,$request->input('user')['dossier']['bulletin5'][0]);
 
-        Dossier::create([
+        $request->validate([
+            'user.dossier.bulletin5' => 'required',
+            'user.dossier.bulletin6' => 'required',
+            'user.dossier.attestation' => 'required',
+            'user.dossier.bordereau' => 'required',
+        ]);
+
+        $dossier::create([
             'user_id' => Auth::user()->id,
-            'bulletin5' => $request->input('bulletin5')[0],
-            'bulletin6' => $request->input('bulletin6')[0],
-            'attestation' => $request->input('attestation')[0],
-            'bordereau' => $request->input('bordereau')[0],
+            'bulletin5' => $request->input('user')['dossier']['bulletin5'][0],
+            'bulletin6' => $request->input('user')['dossier']['bulletin6'][0],
+            'attestation' => $request->input('user')['dossier']['attestation'][0],
+            'bordereau' => $request->input('user')['dossier']['bordereau'][0],
         ]);
 
         Toast::info('dossier enregisté !');
-        Alert::success('<strong>Succès: 😇!!! </strong>Votre dossier a été enregistré avec <strong> succès!😇.</strong>.');
         return redirect()->back();
 
     }

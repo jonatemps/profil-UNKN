@@ -83,7 +83,7 @@ class User extends Authenticatable
         'created_at',
     ];
 
-    protected $with = ['dossier'];
+    protected $with = ['dossier','etude'];
 
 
 
@@ -95,8 +95,20 @@ class User extends Authenticatable
         return $this->belongsTo(Dossier::class,'id','user_id');
     }
 
-    public function identite(){
+    public function identity(){
         return $this->belongsTo(Identity::class,'id','user_id');
+    }
+
+    public function etude(){
+        return $this->belongsTo(Etude::class,'id','user_id');
+    }
+
+    public function occupation(){
+        return $this->belongsTo(Occupation::class,'id','user_id');
+    }
+
+    public function choice(){
+        return $this->belongsTo(Choice::class,'id','user_id');
     }
 
 }

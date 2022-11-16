@@ -12,7 +12,9 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
-        "orchid/platform": "^13.2"
+        "orchid/platform": "^13.2",
+        "rinvex/countries": "^8.1",
+        "rinvex/country": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

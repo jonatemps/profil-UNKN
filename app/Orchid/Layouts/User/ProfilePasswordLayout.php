@@ -25,11 +25,11 @@ class ProfilePasswordLayout extends Rows
 
             Password::make('password')
                 ->placeholder(__('Enter the password to be set'))
-                ->title(__('New password')),
+                ->title(__('Nouveau mot de passe')),
 
             Password::make('password_confirmation')
                 ->placeholder(__('Enter the password to be set'))
-                ->title(__('Confirm new password'))
+                ->title(__('confirmé nouveau mot de passe'))
                 ->help('A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.'),
         ];
     }

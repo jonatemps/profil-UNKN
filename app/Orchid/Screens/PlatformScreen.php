@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
+use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -37,7 +38,11 @@ class PlatformScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Bienvenu sur le profil des etudiants UNIKIN';
+        if (Auth::user()->hasAccess('platform.systems.candidat') && !Auth::user()->hasAccess('platform.systems.admis')) {
+            return 'Bienvenu sur la plateform des inscriptions de l\'UNIKIN';
+        } else {
+            return 'Bienvenu sur le profil des etudiants UNIKIN';
+        }
     }
 
     /**

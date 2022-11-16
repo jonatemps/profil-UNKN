@@ -87,36 +87,44 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Formulaire')
                 ->icon('book-open')
                 ->route('platform.inscription.formulaire')
+                ->permission('platform.systems.candidat')
                 ->title(__('Inscription')),
 
-            Menu::make('document')
+            Menu::make('documents')
                 ->icon('layers')
+                ->permission('platform.systems.candidat')
                 ->route('platform.inscription.document'),
 
             Menu::make('Admission')
                 ->icon('folder-alt')
+                ->permission('platform.systems.etudiant')
                 ->route('platform.admission')
                 ->title(__('Parcours')),
             Menu::make('Déliberation')
                 ->icon('layers')
+                ->permission('platform.systems.etudiant')
                 ->route('platform.deliberation'),
             Menu::make('Cursus Académique')
                 ->icon('graph')
+                ->permission('platform.systems.etudiant')
                 ->route('platform.cursus'),
             Menu::make('Diplôme')
                 ->icon('folder-alt')
+                ->permission('platform.systems.etudiant')
                 ->route('platform.diplome'),
 
 
             Menu::make(__('Users'))
                 ->icon('user')
                 ->route('platform.systems.users')
+                ->permission('platform.systems.admis')
                 ->permission('platform.systems.users')
                 ->title(__('Access rights')),
 
             Menu::make(__('Roles'))
                 ->icon('lock')
                 ->route('platform.systems.roles')
+                ->permission('platform.systems.admis')
                 ->permission('platform.systems.roles'),
         ];
     }
