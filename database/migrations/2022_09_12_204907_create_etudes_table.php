@@ -19,13 +19,15 @@ return new class extends Migration
             $table->string('nom_ecole');
             $table->string('province_ecole');
             $table->string('nom_centre');
-            $table->string('section');
+            $table->string('section_id');
             $table->string('annee');
             $table->string('pourcentage');
-            $table->string('num_diplome');
+            $table->string('num_diplome')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('section_id')->references('id')->on('tablesection');
+
         });
     }
 

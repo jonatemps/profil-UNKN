@@ -9,6 +9,7 @@ use App\Models\Faculty;
 use App\Models\Identity;
 use App\Models\Occupation;
 use App\Models\Pays;
+use App\Models\Section;
 use App\Orchid\Layouts\ChoiseListener;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,8 +49,8 @@ class FormulaireEditScreen extends Screen
 
         //     ]);
         // }
-        // dd(Auth::user()->choice->submitted->isTrue());
-        // dd(Auth::user()->choice->speciale);
+        // dd(Auth::user()->choice);
+        // dd((int)Auth::user()->choice->faculty1_id ?? '');
 
 
 
@@ -57,11 +58,15 @@ class FormulaireEditScreen extends Screen
 
         return [
             'user' =>Auth::user(),
-            'faculty1_id' =>Auth::user()->choice->faculty1_id ?? '',
-            'faculty2_id' =>Auth::user()->choice->faculty2_id ?? '',
-            'departement1_id' =>Auth::user()->choice->departement1_id ?? '',
-            'departement2_id' =>Auth::user()->choice->departement2_id ?? '',
-            'speciale' =>Auth::user()->choice->speciale ?? 0
+            'faculty1_id' => Auth::user()->choice ? (int) Auth::user()->choice->faculty1_id : '',
+            // 'faculty1_id' => 400,
+            'faculty2_id' => Auth::user()->choice ? (int) Auth::user()->choice->faculty2_id : '',
+            'departement1_id' => Auth::user()->choice ? (int)Auth::user()->choice->departement1_id : '',
+            'departement2_id' => Auth::user()->choice ? (int)Auth::user()->choice->departement2_id : '',
+            'speciale' => Auth::user()->choice ? (int)Auth::user()->choice->speciale : 0,
+            'user.etude.section_id' =>Auth::user()->etude ? (int) Auth::user()->etude->section_id : '',
+            'user.etude.annee' => Auth::user()->etude ? (int) Auth::user()->etude->annee : '',
+            'promotion_id' => Auth::user()->choice ? (int)Auth::user()->choice->promotion_id : '',
         ];
     }
 
@@ -97,7 +102,7 @@ class FormulaireEditScreen extends Screen
             Button::make(__('Valider'))
                 ->icon('check')
                 ->type(Color::SUCCESS())
-                ->confirm(__('Cette opération est irréversible. Si vous validez, vous n\'aurai plus la possibilité de mettre à jour vos informations.'))
+                ->confirm(__('Cette opération est irréversible. Si vous validez, vous n\'aurai plus la possibilité de mettre à jour vos informations. Veillez vérifier vos entrées avant de soumettre.'))
                 ->canSee(!empty(Auth::user()->choice))
                 ->disabled($this->submitted == 1)
                 ->method('validation'),
@@ -114,6 +119,8 @@ class FormulaireEditScreen extends Screen
     {
 
         return [
+            Layout::view('platform::partials.myalert'),
+
             Layout::block(Layout::rows([
                 Group::make([
                     Input::make('user.identity.nom')
@@ -173,8 +180,9 @@ class FormulaireEditScreen extends Screen
                             ->required()
                             ->disabled($this->submitted == 1)
                             ->help('Choisisez votre Pays'),
+
                         Input::make('user.identity.telephone')
-                            ->mask('+243 999 999 999')
+                            ->mask('+999 999 999 999')
                             ->title('Téléphone')
                             ->disabled($this->submitted == 1)
                             ->placeholder('Saisisez votre numéro'),
@@ -209,16 +217,45 @@ class FormulaireEditScreen extends Screen
                         ->required()
                         ->disabled($this->submitted == 1),
 
-                    DateTimer::make('user.etude.annee')
+                    // DateTimer::make('user.etude.annee')
+                    //     ->title('Année')
+                    //     ->format('Y')
+                    //     ->help('Selectionnez l\'année de l\'obtention du diplôme'),
+
+                    Select::make('user.etude.annee')
+                        ->options([
+                            '2022'   => '2022',
+                            '2021'   => '2021',
+                            '2020'   => '2020',
+                            '2019'   => '2019',
+                            '2018'   => '2018',
+                            '2017'   => '2017',
+                            '2016'   => '2016',
+                            '2015'   => '2015',
+                            '2014'   => '2014',
+                            '2013'   => '2013',
+                            '2012'   => '2012',
+                            '2011'   => '2011',
+                            '2010'   => '2010',
+                            '2009'   => '2009',
+                            '2008'   => '2008',
+                        ])
                         ->title('Année')
-                        ->format('Y')
+                        ->required()
+                        ->disabled($this->submitted == 1)
                         ->help('Selectionnez l\'année de l\'obtention du diplôme'),
                 ]),
 
                 Group::make([
-                    Input::make('user.etude.section')
+                    // Input::make('user.etude.section')
+                    //     ->title('Section :')
+                    //     ->placeholder('Saisisez votre section')
+                    //     ->required()
+                    //     ->disabled($this->submitted == 1),
+
+                    Select::make('user.etude.section_id')
                         ->title('Section :')
-                        ->placeholder('Saisisez votre section')
+                        ->fromModel(Section::class,'libelle','id')
                         ->required()
                         ->disabled($this->submitted == 1),
 
@@ -233,7 +270,7 @@ class FormulaireEditScreen extends Screen
                 Input::make('user.etude.num_diplome')
                         ->title('Numéro diplôme :')
                         ->placeholder('Saisisez le numéro du diplôme.')
-                        ->required()
+                        // ->required()
                         ->disabled($this->submitted == 1),
             ]))
                 ->title('ÉTUDES SECONDAIRES FAITES')
@@ -313,7 +350,7 @@ class FormulaireEditScreen extends Screen
         // $occupation->fill($request->input('user')['occupation'])->save();
 
         $choice->user_id = Auth::user()->id;
-        $choice->speciale = $request->input('speciale');
+        $choice->speciale = (int) $request->input('speciale');
         $choice->faculty1_id = $request->input('faculty1_id');
         $choice->departement1_id = $request->input('departement1_id');
         $choice->faculty2_id =$request->input('promotion_id') ? null : $request->input('faculty2_id');
@@ -322,6 +359,17 @@ class FormulaireEditScreen extends Screen
         $choice->save();
 
         // dd($request->input(),$identity,$etude,$occupation,$choice);
+
+        if (Auth::user()->choice) {
+            Toast::success('Vos informations ont été modifiées avec succès !');
+        } else {
+            Toast::success('Vos informations ont été sauvegardées avec succès !');
+        }
+
+
+        // Toast::info(__('You are now impersonating this user'));
+
+        return redirect()->back();
     }
 
     public function asyncChargement(string $faculty1_id = null, string $faculty2_id = null){

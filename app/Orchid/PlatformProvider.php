@@ -90,10 +90,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.candidat')
                 ->title(__('Inscription')),
 
-            Menu::make('documents')
-                ->icon('layers')
-                ->permission('platform.systems.candidat')
-                ->route('platform.inscription.document'),
+            // Menu::make('documents')
+            //     ->icon('layers')
+            //     ->permission('platform.systems.candidat')
+            //     ->route('platform.inscription.document'),
 
             Menu::make('Admission')
                 ->icon('folder-alt')

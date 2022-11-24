@@ -17,10 +17,12 @@ class Departement extends Model
      */
     protected $guarded = [];
 
+    // public function faculty(){
+    //     return $this->hasOne(Faculty::class,'id','faculty_id');
+    // }
     public function faculty(){
-        return $this->hasOne(Faculty::class,'id','faculty_id');
+        return $this->hasOne(Faculty::class,'codefac','codefac');
     }
-
 
     public function getFullAttribute(): string
     {
@@ -30,4 +32,11 @@ class Departement extends Model
     // public function scopeActive(Builder $query){
     //     return $query->where('faculty_id','status');
     // }
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'tabledepartement';
 }

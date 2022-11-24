@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Etude extends Model
+class Section extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,10 @@ class Etude extends Model
      */
     protected $guarded = [];
 
-    public function section()
-    {
-        return $this->belongsTo(Section::class);
-    }
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'tablesection';
 }
