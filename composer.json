@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
+        "monarobase/country-list": "^3.3",
         "orchid/platform": "^13.2",
         "rinvex/countries": "^8.1",
         "rinvex/country": "^2.0"

@@ -80,10 +80,10 @@ class UserProfileScreen extends Screen
                 ),
 
             Layout::block(ProfilePasswordLayout::class)
-                ->title(__('Update Password'))
+                ->title(__('Enregistrer'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(
-                    Button::make(__('Update password'))
+                    Button::make(__('Enregistrer'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
                         ->method('changePassword')

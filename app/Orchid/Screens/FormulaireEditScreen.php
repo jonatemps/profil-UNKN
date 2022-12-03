@@ -329,7 +329,7 @@ class FormulaireEditScreen extends Screen
             ];
     }
 
-    public function save(Request $request,Identity $identity,Etude $etude,Occupation $occupation,Choice $choice){
+    public function save(Request $request,Identity $identity,Etude $etude/* ,Occupation $occupation */,Choice $choice){
 
         // dd($request->input());
         $choice = Auth::user()->choice ?? $choice;
@@ -337,7 +337,7 @@ class FormulaireEditScreen extends Screen
 
         $identity = Auth::user()->identity ?? $identity;
         $etude = Auth::user()->etude ?? $etude;
-        $occupation = Auth::user()->occupation ?? $occupation;
+        // $occupation = Auth::user()->occupation ?? $occupation;
         // dd($request->input('user'));
 
         $identity->user_id = Auth::user()->id;

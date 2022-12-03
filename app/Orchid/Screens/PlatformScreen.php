@@ -75,7 +75,7 @@ class PlatformScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::view('platform::partials.welcome'),
+            Layout::view('platform::partials.instruction'),
         ];
     }
 }
