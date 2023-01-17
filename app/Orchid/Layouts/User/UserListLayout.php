@@ -49,6 +49,12 @@ class UserListLayout extends Table
                         ]);
                 }),
 
+            TD::make('email_verified_at', __('Email Verifié'))
+                ->sort()
+                ->render(function (User $user) {
+                    return $user->email_verified_at;
+                }),
+
             TD::make('updated_at', __('Last edit'))
                 ->sort()
                 ->render(function (User $user) {

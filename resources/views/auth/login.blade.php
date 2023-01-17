@@ -44,7 +44,7 @@
                 @endif
 
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 ml-10" href="{{ route('register') }}">
-                    {{ __('Pas de compte ?') }}
+                    {{ __('S’enregistrer') }}
                 </a>
                 <x-jet-button class="ml-4">
                     {{ __('Connexion') }}

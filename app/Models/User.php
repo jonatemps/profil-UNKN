@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -11,7 +12,7 @@ use Orchid\Attachment\Attachable;
 use Orchid\Platform\Models\User as Authenticatable;
 use Orchid\Screen\AsSource;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -109,6 +110,14 @@ class User extends Authenticatable
 
     public function choice(){
         return $this->belongsTo(Choice::class,'id','user_id');
+    }
+
+    public function checkAutoAdmis(){
+        if ($this->choice->faculty1_id !=300 && $this->choice->faculty1_id !=400 && $this->choice->faculty1_id !=500 && substr($this->etude->pourcentage,0,2) >= 60 ) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

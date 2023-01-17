@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens;
 
+use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
@@ -24,12 +25,12 @@ class AdmissionScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Interface d\'adminission';
+        return 'Résultat d’admission';
     }
 
     public function description(): ?string
     {
-        return 'Vos informations sur l\'admission';
+        return 'Vos informations sur l’admission';
     }
     /**
      * Button commands.
@@ -48,10 +49,16 @@ class AdmissionScreen extends Screen
      */
     public function layout(): iterable
     {
+        // dd(Auth::user()->checkAutoAdmis());
+        // dd(substr(Auth::user()->etude->pourcentage,0,2) > 60);
         return [
-            Layout::block(Layout::view('platform::dummy.block'))
-                ->title('Informations')
-                ->description('Ici sont exposées vos qualifiquations'),
+            // Layout::block(Layout::view('platform::partials.congrat'))
+            //     ->title('Situation')
+            //     ->description('Ici savoir si vous êtes admis'),
+
+            Layout::view('platform::partials.congrat')->canSee(Auth::user()->checkAutoAdmis()),
+            Layout::view('platform::partials.wrong')->canSee(!Auth::user()->checkAutoAdmis()),
+            // Layout::view('platform::partials.wrong')
         ];
     }
 }

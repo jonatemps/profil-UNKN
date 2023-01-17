@@ -37,7 +37,7 @@ use Tabuna\Breadcrumbs\Trail;
 
 // Main
 Route::screen('/main', PlatformScreen::class)
-    ->name('platform.main');
+    ->name('platform.main')->middleware('verified');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

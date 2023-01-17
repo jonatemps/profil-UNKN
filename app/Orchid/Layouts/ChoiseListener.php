@@ -72,7 +72,7 @@ class ChoiseListener extends Listener
             // return Promotion::where('faculty_id',null)
             // ->orWhere('faculty_id',$this->query->get('faculty1_id'));
             return Promotion::whereBetween('codetude',[700,800])
-                    ->whereIn('codetude',[102,103,104,702,106,107,1005,1006]);
+                    ->orWhereIn('codetude',[102,103,104,702,106,107,1005,1006,1071,1081]);
         }elseif ($this->query->get('faculty1_id') == 1000) {
             // return Promotion::where('faculty_id',null)
             // ->orWhere('faculty_id',$this->query->get('faculty1_id'));
@@ -125,7 +125,8 @@ class ChoiseListener extends Listener
                     Select::make('departement1_id')
                         ->title(($this->query->get('speciale') == 0) ? 'Département 1' : 'Département')
                         ->fromQuery(Departement::where('codefac',$this->query->get('faculty1_id')),'libelledpt','codedpt')
-                        ->disabled($this->submitted == 1),
+                        ->disabled($this->submitted == 1)
+                        ->required(),
                     // Select::make('departement1_id')
                     //     ->title(($this->query->get('speciale') == 0) ? 'Département 1' : 'Département')
                     //     ->fromQuery(Departement::where('faculty_id',$this->query->get('faculty1_id')),'name','id')
@@ -166,7 +167,8 @@ class ChoiseListener extends Listener
                     ->title('Departement 2')
                     ->fromQuery(Departement::where('codefac',$this->query->get('faculty2_id')),'libelledpt','codedpt')
                     ->canSee(($this->query->get('speciale') == 0))
-                    ->disabled($this->submitted == 1),
+                    ->disabled($this->submitted == 1)
+                    ->required(),
 
                 // Select::make('departement2_id')
                 //     ->title('Departement 1')

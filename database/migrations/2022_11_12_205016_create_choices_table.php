@@ -33,10 +33,10 @@ return new class extends Migration
             // $table->foreign('promotion_id')->references('id')->on('promotions');
 
 
-            $table->foreign('departement1_id')->references('codedpt')->on('tabledepartement');
-            $table->foreign('faculty2_id')->references('codefac')->on('tablefaculte');
-            $table->foreign('departement2_id')->references('codedpt')->on('tabledepartement');
-            $table->foreign('promotion_id')->references('id')->on('promotions');
+            $table->foreign('departement1_id')->references('codedpt')->on('tabledepartement')->onUpdate('cascade');
+            $table->foreign('faculty2_id')->references('codefac')->on('tablefaculte')->onUpdate('cascade');
+            $table->foreign('departement2_id')->references('codedpt')->on('tabledepartement')->onUpdate('cascade');
+            $table->foreign('promotion_id')->references('id')->on('promotions')->onUpdate('cascade');
         });
     }
 

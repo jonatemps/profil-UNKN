@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return redirect()->route('platform.main');
-});
+})->middleware('verified');
 
 Route::middleware([
     'auth:sanctum',
@@ -27,3 +28,11 @@ Route::middleware([
         return redirect()->route('platform.main');
     })->name('dashboard');
 });
+
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->middleware('auth')->name('verification.notice');
+
+Route::get('sendbasicemail',[MailController::class,'basic_email']);
+Route::get('sendhtmlemail',[MailController::class,'html_email']);
+

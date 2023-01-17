@@ -88,7 +88,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('book-open')
                 ->route('platform.inscription.formulaire')
                 ->permission('platform.systems.candidat')
-                ->title(__('Inscription')),
+                ->title(__('Demande Inscription')),
 
             // Menu::make('documents')
             //     ->icon('layers')
@@ -97,7 +97,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Admission')
                 ->icon('folder-alt')
-                ->permission('platform.systems.etudiant')
+                ->permission('platform.systems.candidat')
                 ->route('platform.admission')
                 ->title(__('Parcours')),
             Menu::make('Déliberation')

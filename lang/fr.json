@@ -8,5 +8,17 @@
     "Ensure your account is using a long, random password to stay secure.":"Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.",
     "Current password":"Mot de passe actuel",
     "This is your password set at the moment.":"Il s'agit de votre mot de passe défini pour le moment.",
-    "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.":"Un bon mot de passe comporte au moins 15 caractères ou au moins 8 caractères, dont un chiffre et une lettre minuscule."
+    "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.":"Un bon mot de passe comporte au moins 15 caractères ou au moins 8 caractères, dont un chiffre et une lettre minuscule.",
+    "Current Password" : "Mot de passe actuel",
+    "New Password":"nouveau mot de passe",
+    "Hello!":"Bonjour!",
+    "Please click the button below to verify your email address.":"Veuillez cliquer sur le bouton ci-dessous pour vérifier votre adresse e-mail.",
+    "Verify Email Address":"Vérifier l'adresse e-mail",
+    "If you did not create an account, no further action is required.":"Si vous n'avez pas créé de compte, aucune autre action n'est requise.",
+    "Regards":"Salutations,",
+    "You are receiving this email because we received a password reset request for your account.":"Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation du mot de passe pour votre compte.",
+    "This password reset link will expire in 60 minutes":"Ce lien de réinitialisation de mot de passe expirera dans 60 minutes.",
+    "If you did not request a password reset, no further action is required.":"Si vous n'avez pas demandé de réinitialisation de mot de passe, aucune autre action n'est requise.",
+    "Reset Password":"Réinitialiser le mot de passe",
+    "Whoops! Something went wrong.":"Oups ! Quelque chose s'est mal passé."
 }

@@ -15,4 +15,13 @@ class Choice extends Model
      * @var array
      */
     protected $guarded = [];
+    protected $with = ['faculty','department'];
+
+    public function faculty(){
+        return $this->belongsTo(Faculty::class,'faculty1_id','codefac');
+    }
+
+    public function department(){
+        return $this->belongsTo(Departement::class,'departement1_id','codedpt');
+    }
 }
